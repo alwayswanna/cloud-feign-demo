@@ -1,0 +1,29 @@
+server:
+  port: 9095
+  error:
+    include-binding-errors: always
+    include-message: always
+
+springdoc:
+  swagger-ui:
+    oauth:
+      client-id: spring-cloud-feign
+      client-secret: doSjccFTL4c8KC82b8SqvOH9h1viss3v
+  oAuthFlow:
+    tokenUrl: http://localhost:8080/realms/dev/protocol/openid-connect/token
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8080/realms/dev/protocol/openid-connect/certs
+          issuer-uri: http://localhost:8080/realms/dev
+
+resource-server:
+  max-user-message-length: 50 # default: 10
